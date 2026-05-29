@@ -1,0 +1,16 @@
+{
+  "name": "ai-jee-advanced-test-maker",
+  "version": "1.0.0",
+  "description": "AI powered JEE Advanced test generator prototype",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "jee",
+    "ai",
+    "test-generator"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI JEE Advanced Test Maker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Study navigation">
+      <a class="brand" href="#dashboard">
+        <span class="brand-mark">A</span>
+        <span>
+          <strong>AI JEE</strong>
+          <small>Advanced Prep</small>
+        </span>
+      </a>
+
+      <nav class="side-nav">
+        <a class="active" href="#dashboard">Dashboard</a>
+        <a href="#schedule">Weekly Schedule</a>
+        <a href="#test-maker">AI Test Maker</a>
+        <a href="#analytics">Analytics</a>
+      </nav>
+
+      <div class="mentor-card">
+        <span class="mentor-avatar">AI</span>
+        <strong>Smart Mentor</strong>
+        <p>Verifies level, generates tests, and finds weak areas.</p>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Toggle menu">☰</button>
+        <div>
+          <p class="eyebrow">Student study space</p>
+          <h1>AI JEE Advanced Test Maker</h1>
+        </div>
+        <div class="top-actions">
+          <span class="live-pill">Live AI</span>
+          <a class="button ghost" href="#login">Login</a>
+        </div>
+      </header>
+
+      <main>
+        <section id="dashboard" class="dashboard-grid">
+          <article class="hero-panel">
+            <div class="hero-copy">
+              <p class="eyebrow">Adaptive preparation</p>
+              <h2>Generate practice tests from your verified level.</h2>
+              <p>Login, answer a few level questions, get a JEE Advanced-style test, submit it, and see weak-topic analytics instantly.</p>
+              <div class="hero-actions">
+                <a class="button primary" href="#test-maker">Generate Test</a>
+                <a class="button light" href="#schedule">View Schedule</a>
+              </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Students studying together">
+          </article>
+
+          <aside class="today-card">
+            <p class="eyebrow">Today</p>
+            <h3>Focus Plan</h3>
+            <div class="task-list">
+              <span><strong>Physics</strong> Mechanics practice</span>
+              <span><strong>Chemistry</strong> Organic revision</span>
+              <span><strong>Maths</strong> Calculus timed set</span>
+            </div>
+          </aside>
+        </section>
+
+        <section class="stats-row" aria-label="Progress statistics">
+          <article>
+            <span>Tests Generated</span>
+            <strong id="testsGenerated">0</strong>
+          </article>
+          <article>
+            <span>Latest Score</span>
+            <strong id="latestScore">--</strong>
+          </article>
+          <article>
+            <span>Detected Level</span>
+            <strong id="detectedLevel">Pending</strong>
+          </article>
+          <article>
+            <span>Weak Topic</span>
+            <strong id="weakTopicStat">Not checked</strong>
+          </article>
+        </section>
+
+        <section id="schedule" class="content-section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Batch style planner</p>
+              <h2>Weekly Schedule</h2>
+            </div>
+            <div class="day-tabs" id="dayTabs" aria-label="Choose day">
+              <button class="active" data-day="Mon">Mon</button>
+              <button data-day="Tue">Tue</button>
+              <button data-day="Wed">Wed</button>
+              <button data-day="Thu">Thu</button>
+              <button data-day="Fri">Fri</button>
+              <button data-day="Sat">Sat</button>
+            </div>
+          </div>
+
+          <div class="schedule-layout">
+            <div class="lecture-list" id="lectureList"></div>
+            <aside class="notes-panel">
+              <h3>Practice Resources</h3>
+              <button class="resource-button">Lecture Notes</button>
+              <button class="resource-button">DPP Sheet</button>
+              <button class="resource-button">Formula Revision</button>
+              <button class="resource-button">Previous Mistakes</button>
+            </aside>
+          </div>
+        </section>
+
+        <section id="login" class="content-section split-section">
+          <div>
+            <p class="eyebrow">Student access</p>
+            <h2>Login before AI verification</h2>
+            <p class="muted">The Python backend stores users in SQLite with password hashing and secure session cookies.</p>
+          </div>
+          <form class="form-card" id="loginForm">
+            <div class="email-status" id="emailStatus">Checking email system...</div>
+
+            <label for="studentName">Student Name</label>
+            <input id="studentName" name="studentName" type="text" placeholder="Enter your name" required>
+
+            <label for="studentEmail">Email</label>
+            <input id="studentEmail" name="studentEmail" type="email" placeholder="student@example.com" required>
+
+            <label for="parentEmail">Parent Email</label>
+            <input id="parentEmail" name="parentEmail" type="email" placeholder="parent@example.com" required>
+
+            <label for="studentPassword">Password</label>
+            <input id="studentPassword" name="studentPassword" type="password" placeholder="Minimum 8 characters" minlength="8" required>
+
+            <button class="button primary full" type="submit">Login and Continue</button>
+            <p class="form-message" id="loginMessage" role="status"></p>
+          </form>
+        </section>
+
+        <section id="test-maker" class="content-section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">AI chatbot</p>
+              <h2>Verify level, then generate a test</h2>
+            </div>
+            <span class="live-pill">Python AI Ready</span>
+          </div>
+
+          <div class="chat-layout">
+            <div class="chat-window" aria-live="polite">
+              <div class="chat-message bot">
+                <p>Hello! Login first, complete verification, and I will generate a JEE Advanced test. After submission, I will show weak areas.</p>
+              </div>
+              <div id="chatMessages"></div>
+            </div>
+
+            <form class="form-card" id="verificationForm">
+              <label for="classLevel">Current Class</label>
+              <select id="classLevel" required>
+                <option value="">Choose class</option>
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+                <option value="dropper">Dropper</option>
+              </select>
+
+              <label for="accuracy">Average Accuracy</label>
+              <select id="accuracy" required>
+                <option value="">Choose accuracy</option>
+                <option value="beginner">Below 40%</option>
+                <option value="intermediate">40% to 70%</option>
+                <option value="advanced">Above 70%</option>
+              </select>
+
+              <label for="topic">Weakest Topic</label>
+              <select id="topic" required>
+                <option value="">Choose topic</option>
+                <option value="Mechanics">Physics: Mechanics</option>
+                <option value="Organic Chemistry">Chemistry: Organic Chemistry</option>
+                <option value="Calculus">Maths: Calculus</option>
+                <option value="Coordinate Geometry">Maths: Coordinate Geometry</option>
+              </select>
+
+              <label for="studyHours">Daily Study Hours</label>
+              <input id="studyHours" type="number" min="1" max="14" placeholder="Example: 5" required>
+
+              <button class="button primary full" type="submit">Verify and Generate Test</button>
+            </form>
+          </div>
+
+          <div class="test-output" id="testOutput" hidden>
+            <div class="test-output-header">
+              <div>
+                <p class="eyebrow">Generated test</p>
+                <h3 id="testTitle">Your AI Test</h3>
+              </div>
+              <span class="level-badge" id="levelBadge">Verified</span>
+            </div>
+            <div id="testDetails" class="test-details"></div>
+            <form id="testForm" class="question-list"></form>
+          </div>
+        </section>
+
+        <section id="analytics" class="content-section">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Performance report</p>
+              <h2>Weak Area Analytics</h2>
+            </div>
+          </div>
+          <div id="analyticsOutput" class="analytics-output empty-state">
+            <h3>No test submitted yet</h3>
+            <p>Submit a generated test to see subject-wise score, weak topics, correct answers, improvement suggestions, and a regenerate button for the next adaptive test.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
